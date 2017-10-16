@@ -7,12 +7,10 @@ class MergeSort{
 
 private:
     std::vector<int> listOfInt;
-    int listOfIntCapacity =10;
     int width = 1;
     std::vector<int>::size_type sizeOfList;
     void merge(int,int,int);
     void mergeSort();
-    int getSizeOfList();
     void printList();
 public:
     int main(int argc,char * argv[]);
@@ -20,9 +18,6 @@ public:
 
 };
 
-int MergeSort::getSizeOfList(){
-    return sizeof(listOfInt)/sizeof(listOfInt[0]);
-}
 void MergeSort::printList(){
     for (int i=0; i<listOfInt.size();i++){
         std::cout << listOfInt[i] << std::endl;
@@ -55,7 +50,7 @@ void MergeSort::merge(int leftSetStart, int middleBoundary, int secondSetBoundar
         }
     }
 
-    //All of left set is copied.
+    //All of left set is copied
     if (leftSetCurrentIndex > middleBoundary){
         while(rightSetCurrentIndex <= secondSetBoundary){
             temp1[tempListCurrentIndex] = listOfInt[rightSetCurrentIndex];
