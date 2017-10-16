@@ -109,8 +109,14 @@ void MergeSort::getInput(int argc,char * argv[]){
     }
 
     std::string currentToken;
-    while(fileParse >> currentToken){
-           listOfInt.push_back(std::stoi(currentToken));
+    try{
+        while(fileParse >> currentToken){
+            listOfInt.push_back(std::stoi(currentToken));
+        }
+    }
+    catch (const std::exception&){
+        std::cout << "An error has occurred while parsing file. Please revise file and try again" << std::endl;
+        exit(1);
     }
     sizeOfList = listOfInt.size();
     mergeSort();
