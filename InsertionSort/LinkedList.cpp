@@ -41,6 +41,24 @@ class list
     
     list<T>& operator=(const list& rtSide);
     
+    //swaps the positions given
+    void swap(int i, int j);
+    
+    //finds first location that a given number is larger than all the previous numbers
+    int specialSearch(T newData, int search);
+    
+    //starts the special node at the head adn returns the head vaue
+    T start()
+    {
+      special = head;
+      return special->data;
+    }
+    T next()
+    {
+      special = special->next;
+      return special->data;
+    }
+    
     //internal node structure to be used in this class
     struct node
     {
@@ -55,6 +73,8 @@ class list
     node* head;
     //node at the end
     node* tail;
+    //special no to quickly traverse linked list
+    node* special;
     
     
 };
@@ -309,6 +329,34 @@ list<T>& list<T>::operator=(const list& rtSide)
       
       return *this;
   }
+}
+
+template<class T>
+void list<T>::swap(int i, int j)
+{
+  int temp1;
+  temp1 = (*this)[i];
+  int temp2;
+  temp2 = (*this)[j];
+  this->remove(i);
+  this->insert(temp2,i);
+  this->remove(j);
+  this->insert(temp1,j);
+}
+
+template<class T>
+int list<T>::specialSearch(T newData,int search)
+{
+  node* temp = head;
+  for(int i=0;i<search;i++)
+  {
+    if(newData < temp->data)
+    {
+      return i;
+    }
+    temp = temp->next;
+  }
+  return search;
 }
 
 #endif
