@@ -47,6 +47,8 @@ class list
     //finds first location that a given number is larger than all the previous numbers
     int specialSearch(T newData, int search);
     
+    void insSort();
+    
     //starts the special node at the head adn returns the head vaue
     T start()
     {
@@ -357,6 +359,32 @@ int list<T>::specialSearch(T newData,int search)
     temp = temp->next;
   }
   return search;
+}
+
+template<class T>
+void List<T>::insSort()
+{
+  node* front = head;
+  node* search1 = head;
+  node* search2 = head;
+  //int temp;
+  for(int i=0;i<size-1;i++)
+  {
+    //temp = front->data;
+    for(int j=0;j<i;j++)
+    {
+      if(search1->data < front->data)
+      {
+	//swap values in here
+      }
+      else
+      {
+	search1 = search1->next;
+      }
+    }
+    
+    
+  }
 }
 
 #endif
