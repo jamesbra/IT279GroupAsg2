@@ -4,11 +4,12 @@
 #include <limits>
 #include <iomanip>
 #include "InsertionSort.cpp"
+#include <cstdlib>
 
 using namespace std;
 
 
-int main()
+int main(int argc, char * argv[])
 {
   ifstream inStream;
   ofstream outStream;
@@ -17,30 +18,32 @@ int main()
   list<long> testList;
   
   
-  cout<<"Enter name of file to read"<<endl;
-  cin>>filename;
-  inStream.open(filename.c_str());
+  //cout<<"Enter name of file to read"<<endl;
+  //cin>>filename;
+  inStream.open(argv[1]);
   while(inStream.fail())
   {
   cout<<"Invalid file name"<<endl;
-  cout<<"Enter name of file to read"<<endl;
-  cin>>filename;
-  cin.clear();
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
-  inStream.open(filename.c_str());
+  exit(1);
+  //cout<<"Enter name of file to read"<<endl;
+  //cin>>filename;
+  //cin.clear();
+  //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  //inStream.open(filename.c_str());
   }
   
-  cout<<"Enter name of file to write to"<<endl;
-  cin>>outfile;
-  outStream.open(outfile.c_str());
+  //cout<<"Enter name of file to write to"<<endl;
+  //cin>>outfile;
+  outStream.open(argv[2]);
   while(inStream.fail())
   {
   cout<<"Invalid file name"<<endl;
-  cout<<"Enter name of file to wrtie too"<<endl;
-  cin>>outfile;
-  cin.clear();
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
-  outStream.open(outfile.c_str());
+  exit(1);
+  //cout<<"Enter name of file to wrtie too"<<endl;
+  //cin>>outfile;
+  //cin.clear();
+  //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  //outStream.open(outfile.c_str());
   }
   int i;
   cout<<"reading in numbers"<<endl;
