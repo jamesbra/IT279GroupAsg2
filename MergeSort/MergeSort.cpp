@@ -11,21 +11,28 @@ private:
     std::vector<int>::size_type sizeOfList;
     void merge(int,int,int);
     void mergeSort();
-    void printList();
+    void printList(std::string outputFile);
 public:
     int main(int argc,char * argv[]);
-    void getInput(int argc,char * argv[]);
+    void processFile(int argc,char * argv[]);
 
 };
 
-void MergeSort::printList(){
-    for (int i=0; i<listOfInt.size();i++){
-        std::cout << listOfInt[i] << std::endl;
+void MergeSort::printList(std::string outputFile){
+    std::ofstream outStream;
+    outStream.open(outputFile);
+    if (outStream.fail()){
+        std::cout << "Output file writing process failed." << std::endl;
+        exit(1);
     }
+    else{
+        for (int i=0; i<listOfInt.size();i++){
+            outStream << listOfInt[i] << "\n";
+        }
+    }
+    
 }
 void MergeSort::merge(int leftSetStart, int middleBoundary, int secondSetBoundary){
-
-    
     std::vector<int> temp1;
     int leftSetCurrentIndex = leftSetStart;
     int tempListCurrentIndex = leftSetStart;
@@ -93,11 +100,11 @@ void MergeSort::mergeSort(){
             merge(l,m,r);
         }
     }
-    printList();
+    
 }
-void MergeSort::getInput(int argc,char * argv[]){
+void MergeSort::processFile(int argc,char * argv[]){
     std::ifstream fileParse;
-    if (argc < 2){
+    if (argc < 3){
         std::cout << "Please enter the filename as the argument" << std::endl;
     }
     else{
@@ -120,10 +127,10 @@ void MergeSort::getInput(int argc,char * argv[]){
     }
     sizeOfList = listOfInt.size();
     mergeSort();
+    printList(argv[2]);
 }
 int main(int argc, char * argv[]){
     MergeSort merge;
-    merge.getInput(argc,argv);
-
+    merge.processFile(argc,argv);
 }
 
